@@ -1,0 +1,19 @@
+RewriteEngine On
+
+# Redireciona todas as requisições para a pasta public
+RewriteCond %{REQUEST_URI} !^/public/
+RewriteRule ^(.*)$ /public/$1 [L]
+
+<IfModule mod_headers.c>
+    # Desativar cache para todos os arquivos
+    <FilesMatch ".*">
+        Header set Cache-Control "no-store, no-cache, must-revalidate, max-age=0"
+        Header set Pragma "no-cache"
+        Header set Expires "Thu, 01 Jan 1970 00:00:00 GMT"
+    </FilesMatch>
+</IfModule>
+
+<IfModule mod_expires.c>
+    # Desativar o módulo mod_expires (se estiver ativo)
+    ExpiresActive Off
+</IfModule>

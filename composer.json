@@ -1,0 +1,29 @@
+{
+  "name": "fixa/vidros",
+  "description": "Simple ERP System",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Elias Craveiro",
+      "email": "elias@etecsystems.com.br",
+      "homepage": "https://elias.etecsystems.com.br",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  },
+  "require": {
+    "ramsey/uuid": "^4.7",
+    "guzzlehttp/guzzle": "^7.8",
+    "phpmailer/phpmailer": "^6.9",
+    "statickidz/php-google-translate-free": "^1.2",
+    "illuminate/database": "^11.13",
+    "jenssegers/agent": "^2.6",
+    "jenssegers/blade": "^2.0",
+    "tecnickcom/tcpdf": "^6.7",
+    "phpoffice/phpspreadsheet": "^2.2"
+  }
+}

@@ -1,0 +1,8 @@
+config/database.php
+config/function.txt
+.env
+install.sql
+.idea
+vendor
+/src/Views/template/
+/src/Views/documentation/
