@@ -33,8 +33,7 @@ class NpsController extends Controller
                 ->orwhere('range', 'minimal')
                 ->orwhere('range', 'emoji')
                 ->where('visibility', 'default')->get(),
-            "page" => "question",
-            "user_agent" => $this->user
+            "page" => "question"
         ]);
     }
 

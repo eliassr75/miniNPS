@@ -1,5 +1,25 @@
 <?php
-use Jenssegers\Agent\Agent;
+//use Jenssegers\Agent\Agent;
+//
+//$agent = new Agent();
+//
+//// Verificando se o usuário está em um dispositivo móvel
+//$isMobile = $agent->isMobile();
+//
+//// Verificando se o usuário está em um tablet
+//$isTablet = $agent->isTablet();
+//
+//// Verificando se o usuário está em um desktop
+//$isDesktop = $agent->isDesktop();
+//
+//// Obtendo o nome do navegador
+//$browser = $agent->browser();
+//
+//// Obtendo o sistema operacional
+//$platform = $agent->platform();
+//
+//// Obtendo o dispositivo
+//$device = $agent->device();
 
 return [
 
@@ -124,38 +144,13 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
-    'agent' => function ()
-        {
-            $agent = new Agent();
-
-            // Verificando se o usuário está em um dispositivo móvel
-            $isMobile = $agent->isMobile();
-
-            // Verificando se o usuário está em um tablet
-            $isTablet = $agent->isTablet();
-
-            // Verificando se o usuário está em um desktop
-            $isDesktop = $agent->isDesktop();
-
-            // Obtendo o nome do navegador
-            $browser = $agent->browser();
-
-            // Obtendo o sistema operacional
-            $platform = $agent->platform();
-
-            // Obtendo o dispositivo
-            $device = $agent->device();
-
-            // Retornando as informações como JSON, por exemplo
-            return response()->json([
-                'is_mobile' => $isMobile,
-                'is_tablet' => $isTablet,
-                'is_desktop' => $isDesktop,
-                'browser' => $browser,
-                'platform' => $platform,
-                'device' => $device,
-            ]);
-        }
-    }
+//    'agent' => [
+//        'is_mobile' => $isMobile,
+//        'is_tablet' => $isTablet,
+//        'is_desktop' => $isDesktop,
+//        'browser' => $browser,
+//        'platform' => $platform,
+//        'device' => $device,
+//    ],
 
 ];
