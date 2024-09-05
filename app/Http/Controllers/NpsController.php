@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Entity;
 use App\Models\Nps;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
@@ -28,11 +29,25 @@ class NpsController extends Controller
     public function index()
     {
 
+        $entity = session('entity_token');
+
+        if (!$entity):
+            abort(403, 'Acesso não autorizado.');
+        endif;
+
+        $entity = Entity::where('token', $entity)->first();
+        $nps = Nps::orwhere('range', 'default')
+            ->orwhere('range', 'minimal')
+            ->orwhere('range', 'emoji')
+            ->where('entity_id', $entity->id)
+            ->where('visibility', 'default')->get();
+
+        if($nps->isEmpty()):
+            abort(404, 'Não há resultados para a página solicitada!');
+        endif;
+
         return view('nps.index', [
-            "nps" => Nps::orwhere('range', 'default')
-                ->orwhere('range', 'minimal')
-                ->orwhere('range', 'emoji')
-                ->where('visibility', 'default')->get(),
+            "nps" => $nps,
             "page" => "question"
         ]);
     }

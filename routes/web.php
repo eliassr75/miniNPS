@@ -10,6 +10,11 @@ Route::get('/', function () {
     return redirect()->route('nps.index');
 });
 
+Route::get('/entity/{entity_token}', function ($entity_token) {
+    session()->put('entity_token', $entity_token);
+    return redirect()->route('nps.index');
+});
+
 Route::resources([
     'nps' => NpsController::class,
     'nps_answers' => NpsAnswerController::class
