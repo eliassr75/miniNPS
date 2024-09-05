@@ -5,7 +5,7 @@
 @section('content')
 
     <div class="section text-center">
-        <img src="{{ asset('assets/img/logo.png') }}" alt="">
+        <img class="img-fluid" src="{{ asset('assets/img/logo.png') }}" alt="">
         <h4 class="mt-2">Sua Opinião é Importante!</h4>
     </div>
 
