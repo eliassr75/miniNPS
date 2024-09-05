@@ -21,12 +21,23 @@ class Nps extends Model
         'ends_at',
         'range',
         'visibility',
+        'entity_id'
     ];
 
     protected $casts = [
         'starts_at' => 'datetime',
         'ends_at' => 'datetime',
     ];
+
+    public function answers()
+    {
+        return $this->hasMany(NpsAnswer::class, 'nps_id', 'id');
+    }
+
+    public function entity()
+    {
+        return $this->belongsTo(Entity::class, 'entity_id', 'id');
+    }
 
     public static function npsCacheKey(): string
     {

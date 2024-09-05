@@ -13,12 +13,19 @@
 
         <div class="row d-flex justify-content-center">
             <div class="col-lg-4 col-md-8 col-12">
-                <form class="mt-3" method="POST" action="{{ route('nps.store') }}">
+                <form class="mt-3" method="POST" action="{{ route('nps_answers.store') }}">
                     @csrf
 
                     <div class="card">
                         <div class="card-body">
 
+                            @if(session('response_nps'))
+                                {{ json_encode(session('response_nps'), JSON_PRETTY_PRINT) }}
+                                {{ json_encode(session('response_why'), JSON_PRETTY_PRINT) }}
+                                {{ session('error') }}
+                            @endif
+
+                            <input type="hidden" name="page" value="{{ $page }}"/>
                             @foreach($nps as $value)
 
                                 @if($value->isVisible())
@@ -34,7 +41,6 @@
 
                                     <input type="hidden" name="answer"/>
                                     <input type="hidden" name="question" value="{{ $value->id }}"/>
-                                    <input type="hidden" name="page" value="{{ $page }}"/>
 
                                     @switch($value->range)
                                         @case('minimal')
@@ -75,47 +81,50 @@
                                                     </i>
                                                 </div>
                                             </div>
-
-                                            <br>
-                                            <div class="mb-05">
-                                                Gostaríamos de acompanhar sua avaliação de perto. Se possível, deixe seu nome, e-mail ou
-                                                telefone para que possamos entrar em contato e garantir que sua experiência seja ainda melhor.
-                                                Sua opinião é valiosa, e estamos aqui para oferecer o suporte que você precisa.
-                                            </div>
-                                            <div class="form-group basic animated">
-                                                <div class="input-wrapper">
-                                                    <label class="label" for="name">*Seu nome e sobrenome</label>
-                                                    <input type="text" class="form-control" id="name" name="name" placeholder="*Seu nome e sobrenome" required>
-                                                    <i class="clear-input">
-                                                        <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
-                                                    </i>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group basic animated">
-                                                <div class="input-wrapper">
-                                                    <label class="label" for="phone">Seu telefone - (00) 00000-0000</label>
-                                                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="Seu telefone - (00) 00000-0000">
-                                                    <i class="clear-input">
-                                                        <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
-                                                    </i>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group basic animated">
-                                                <div class="input-wrapper">
-                                                    <label class="label" for="email">E-mail</label>
-                                                    <input type="email" class="form-control" id="email" name="email" placeholder="E-mail">
-                                                    <i class="clear-input">
-                                                        <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
-                                                    </i>
-                                                </div>
-                                            </div>
                                             @break
                                     @endswitch
                                 </div>
                                 @endif
                             @endforeach
+
+                            @if($page == "justify")
+                                <br>
+
+                                <div class="mb-05">
+                                    Gostaríamos de acompanhar sua avaliação de perto. Se possível, deixe seu nome, e-mail ou
+                                    telefone para que possamos entrar em contato e garantir que sua experiência seja ainda melhor.
+                                    Sua opinião é valiosa, e estamos aqui para oferecer o suporte que você precisa.
+                                </div>
+                                <div class="form-group basic animated">
+                                    <div class="input-wrapper">
+                                        <label class="label" for="name">*Seu nome e sobrenome</label>
+                                        <input type="text" class="form-control" id="name" name="name" placeholder="*Seu nome e sobrenome" required>
+                                        <i class="clear-input">
+                                            <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
+                                        </i>
+                                    </div>
+                                </div>
+
+                                <div class="form-group basic animated">
+                                    <div class="input-wrapper">
+                                        <label class="label" for="email">E-mail</label>
+                                        <input type="email" class="form-control" id="email" name="email" placeholder="E-mail" required>
+                                        <i class="clear-input">
+                                            <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
+                                        </i>
+                                    </div>
+                                </div>
+
+                                <div class="form-group basic animated">
+                                    <div class="input-wrapper">
+                                        <label class="label" for="phone">Seu telefone - (00) 00000-0000</label>
+                                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="Seu telefone - (00) 00000-0000">
+                                        <i class="clear-input">
+                                            <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
+                                        </i>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                     </div>
 
@@ -148,6 +157,7 @@
             });
 
 
+            @if(!session()->has('response_nps'))
             $("form").on('submit', function (e){
                 if(!$('input[name="answer"]').val()){
                     e.preventDefault();
@@ -157,6 +167,7 @@
                     })
                 }
             })
+            @endif
 
             $("#phone").mask("(00) 00000-0000")
         })

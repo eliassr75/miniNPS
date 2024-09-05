@@ -15,6 +15,7 @@ return new class extends Migration
             $table->dateTime('ends_at')->nullable();
             $table->string('range')->default('default');
             $table->string('visibility')->default('default');
+            $table->foreignId('entity_id')->constrained('entity')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });
 

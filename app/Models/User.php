@@ -21,6 +21,7 @@ class User extends Authenticatable
         'email',
         'level',
         'password',
+        'entity_id'
     ];
 
     /**
@@ -46,8 +47,13 @@ class User extends Authenticatable
         ];
     }
 
-    public function data()
+    public function client_data()
     {
-        return $this->hasOne(ClientData::class);
+        return $this->hasMany(ClientData::class, 'user_id', 'id');
+    }
+
+    public function entity()
+    {
+        return $this->belongsTo(Entity::class, 'entity_id', 'id');
     }
 }
