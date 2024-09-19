@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Entity;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -35,10 +36,19 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        $token = $request->token;
+        $entity = Entity::where('token', $token)->first();
+
+        if (!$entity){
+            return back()->withInput($request->only('token'))->withErrors(['token', 'Token inválido']);
+        }
+
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'entity_id' => $entity->id,
+            'level' => 'user'
         ]);
 
         event(new Registered($user));

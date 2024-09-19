@@ -88,6 +88,8 @@ return [
 
     'timezone' => env('APP_TIMEZONE', 'UTC'),
 
+    'charset' => 'UTF-8',
+
     /*
     |--------------------------------------------------------------------------
     | Application Locale Configuration

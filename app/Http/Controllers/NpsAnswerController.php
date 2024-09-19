@@ -54,14 +54,17 @@ class NpsAnswerController extends Controller
                 break;
             case "justify":
 
+                $guest = date('YmdHis') . sprintf('%03d', (microtime(true) * 1000) % 1000);
+                $name = $request->name ? $request->name : "Usuário Anônimo ($guest)";
+                $email = $request->email ? $request->email : "$guest@etecsystems.com.br";
                 $phone = $request->phone;
 
                 try {
                     $user = User::where('email', $request->email)->first();
                     if (!$user):
                         $user = User::create([
-                            'name' => $request->name,
-                            'email' => $request->email,
+                            'name' => $name,
+                            'email' => $email,
                             'level' => 'client',
                             'password' => Hash::make(date('Y-m-d H:i:s')),
                         ]);

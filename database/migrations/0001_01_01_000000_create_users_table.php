@@ -15,8 +15,12 @@ return new class extends Migration
         Schema::create('entity', function (Blueprint $table) {
             $table->id();
             $table->text('name');
+            $table->integer('parent_id')->nullable();
             $table->boolean('active')->default(true);
             $table->string('cnpj')->nullable();
+            $table->boolean('guest_name')->default(true)->nullable(false);
+            $table->boolean('guest_email')->default(true)->nullable(false);
+            $table->boolean('guest_phone')->default(true)->nullable(false);
             $table->string('token')->nullable();
             $table->timestamps();
         });

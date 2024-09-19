@@ -49,7 +49,7 @@ class User extends Authenticatable
 
     public function client_data()
     {
-        return $this->hasMany(ClientData::class, 'user_id', 'id');
+        return $this->hasOne(ClientData::class, 'user_id', 'id');
     }
 
     public function entity()

@@ -17,6 +17,25 @@
                             <div class="form-group basic">
                                 <div class="input-wrapper">
 
+                                    @if($errors->has('message'))
+                                        <div class="alert alert-danger alert-dismissible fade show mb-2" role="alert">
+                                            {{ $errors->first('message') }}
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>
+                                    @endif
+
+                                    <label class="label" for="token">Token</label>
+                                    <input type="text" name="token" value="{{  old('token') }}" required autofocus
+                                           autocomplete="token" class="form-control" id="token" placeholder="Token">
+                                    <i class="clear-input">
+                                        <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>
+                                    </i>
+                                </div>
+                            </div>
+
+                            <div class="form-group basic">
+                                <div class="input-wrapper">
+
                                     @if($errors->has('name'))
                                         <div class="alert alert-danger alert-dismissible fade show mb-2" role="alert">
                                             {{ $errors->first('name') }}
@@ -25,7 +44,7 @@
                                     @endif
 
                                     <label class="label" for="name">Name</label>
-                                    <input type="text" name="name" value="{{  old('name') }}" required autofocus
+                                    <input type="text" name="name" value="{{  old('name') }}" required
                                            autocomplete="name" class="form-control" id="name" placeholder="Name">
                                     <i class="clear-input">
                                         <ion-icon name="close-circle" role="img" class="md hydrated" aria-label="close circle"></ion-icon>

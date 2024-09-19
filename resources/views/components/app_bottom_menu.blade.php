@@ -1,33 +1,27 @@
-<!-- App Bottom Menu -->
+    <!-- App Bottom Menu -->
 <div class="appBottomMenu">
-    <a href="index.html" class="item active">
+    <a href="{{ route('dashboard') }}" class="item {{ request()->routeIs('dashboard') ? 'active': "" }}">
         <div class="col">
             <ion-icon name="pie-chart-outline"></ion-icon>
-            <strong>Overview</strong>
+            <strong>Dashboard</strong>
         </div>
     </a>
-    <a href="app-pages.html" class="item">
+    <a href="{{ route('users.index') }}" class="item {{ request()->routeIs('users.index') ? 'active': "" }}">
         <div class="col">
-            <ion-icon name="document-text-outline"></ion-icon>
-            <strong>Pages</strong>
+            <ion-icon name="people-outline"></ion-icon>
+            <strong>Clientes</strong>
         </div>
     </a>
-    <a href="app-components.html" class="item">
+    <a href="{{ route('nps.all') }}" class="item {{ request()->routeIs('nps.all') ? 'active': "" }}">
         <div class="col">
-            <ion-icon name="apps-outline"></ion-icon>
-            <strong>Components</strong>
-        </div>
-    </a>
-    <a href="app-cards.html" class="item">
-        <div class="col">
-            <ion-icon name="card-outline"></ion-icon>
-            <strong>My Cards</strong>
+            <ion-icon name="create-outline"></ion-icon>
+            <strong>Pesquisas</strong>
         </div>
     </a>
     <a href="app-settings.html" class="item">
         <div class="col">
             <ion-icon name="settings-outline"></ion-icon>
-            <strong>Settings</strong>
+            <strong>Configurações</strong>
         </div>
     </a>
 </div>

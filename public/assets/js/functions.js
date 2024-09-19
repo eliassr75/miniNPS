@@ -1,3 +1,29 @@
+let configDataTable = {
+    stateSave: true,
+    responsive: true,
+    language: {
+        searchPlaceholder: 'Faça uma pesquisa nesta página',
+        zeroRecords: "Não encontramos resultados...",
+        sSearch: '',
+        sLengthMenu: '_MENU_',
+        sLength: 'dataTables_length',
+        info: 'Total de Registros: _TOTAL_',
+        infoFiltered: '(Filtrado de _MAX_ resultados)',
+        infoEmpty: "Total de Registros: _TOTAL_",
+        oPaginate: {
+            sFirst: '<i class="bi bi-arrow-left-circle"></i>',
+            sPrevious: '<i class="bi bi-arrow-left-circle"></i>',
+            sNext: '<i class="bi bi-arrow-right-circle"></i>',
+            sLast: '<i class="bi bi-arrow-right-circle"></i>'
+        }
+    },
+    order: false,
+    lengthChange: true,
+    autoWidth: true,
+    paging: false
+}
+
+
 function dialog(response) {
 
     let dialogTheme = "";

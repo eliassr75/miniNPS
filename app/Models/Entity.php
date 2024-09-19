@@ -14,8 +14,12 @@ class Entity extends Model
 
     protected $fillable = [
         'name',
+        'parent_id',
         'active',
         'cnpj',
+        'guest_name',
+        'guest_email',
+        'guest_phone',
         'token'
     ];
 

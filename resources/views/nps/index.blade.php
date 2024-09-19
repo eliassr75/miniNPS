@@ -89,12 +89,13 @@
 
                             @if($page == "justify")
                                 <br>
-
                                 <div class="mb-05">
                                     Gostaríamos de acompanhar sua avaliação de perto. Se possível, deixe seu nome, e-mail ou
                                     telefone para que possamos entrar em contato e garantir que sua experiência seja ainda melhor.
                                     Sua opinião é valiosa, e estamos aqui para oferecer o suporte que você precisa.
                                 </div>
+
+                                @if($entity->guest_name)
                                 <div class="form-group basic animated">
                                     <div class="input-wrapper">
                                         <label class="label" for="name">*Seu nome e sobrenome</label>
@@ -104,7 +105,9 @@
                                         </i>
                                     </div>
                                 </div>
+                                @endif
 
+                                @if($entity->guest_email)
                                 <div class="form-group basic animated">
                                     <div class="input-wrapper">
                                         <label class="label" for="email">E-mail</label>
@@ -114,7 +117,9 @@
                                         </i>
                                     </div>
                                 </div>
+                                @endif
 
+                                @if($entity->guest_phone)
                                 <div class="form-group basic animated">
                                     <div class="input-wrapper">
                                         <label class="label" for="phone">Seu telefone - (00) 00000-0000</label>
@@ -124,6 +129,7 @@
                                         </i>
                                     </div>
                                 </div>
+                                @endif
                             @endif
                         </div>
                     </div>
